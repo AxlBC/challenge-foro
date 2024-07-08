@@ -23,7 +23,17 @@ public class Curso {
     @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Topico> topicos;
 
-    public Curso actualizarCurso(Long aLong) {
-        return null;
+    public Curso(DatosRegistroCurso datos) {
+        this.nombre = datos.nombre();
+        this.categoria = datos.categoria();
+    }
+
+    public void actualizarCurso(DatosActualizaCurso datos) {
+        if (datos.nombre() != null) {
+            this.nombre = datos.nombre();
+        }
+        if (datos.categoria() != null) {
+            this.categoria = datos.categoria();
+        }
     }
 }

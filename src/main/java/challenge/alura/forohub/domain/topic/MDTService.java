@@ -56,12 +56,7 @@ public class MDTService { // (MDTService = Manejo de Datos Topico Service)
     }
 
     public ResponseEntity<DatosRespuestaTopico> retornarDatosTopico(Long id) {
-        if (!topicoRepository.findById(id).isPresent()) {
-            throw new ValidacionDeIntegridad("No se ha encontrado ningún tópico con ese id.");
-        }
-
-        var topico = topicoRepository.getReferenceById(id);
-        return ResponseEntity.ok(new DatosRespuestaTopico(topico));
+        return ResponseEntity.ok(new DatosRespuestaTopico(topicoRepository.getReferenceById(id)));
     }
 
     @Transactional
@@ -72,7 +67,6 @@ public class MDTService { // (MDTService = Manejo de Datos Topico Service)
 
         if (datos.idCurso() != null && !cursoRepository.findById(datos.idCurso()).isPresent()) {
             throw new ValidacionDeIntegridad("No se ha encontrado ningún curso con ese id.");
-
         }
 
         var topico = topicoRepository.getReferenceById(id);
@@ -100,6 +94,4 @@ public class MDTService { // (MDTService = Manejo de Datos Topico Service)
             return ResponseEntity.notFound().build();
         }
     }
-
-
 }

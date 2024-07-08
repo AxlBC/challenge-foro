@@ -32,7 +32,7 @@ public class TopicoController {
 //        System.out.println(datosRegistroTopico);
 //        topicRepository.save(new Topico(datosRegistroTopico));
         var response = service.registrarTopico(datosRegistroTopico);
-        URI url = uriComponentsBuilder.path("/topic/{id}").buildAndExpand(response.idTopico()).toUri();
+        URI url = uriComponentsBuilder.path("/topico/{id}").buildAndExpand(response.idTopico()).toUri();
 //        return ResponseEntity.ok(response);
         return ResponseEntity.created(url).body(response);
     }
@@ -58,8 +58,7 @@ public class TopicoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<DatosRespuestaTopico> actualizarDatosTopico(@PathVariable Long id, @RequestBody @Valid DatosActualizaTopico datos) {
-        var response = service.actualizarTopico(id, datos);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(service.actualizarTopico(id, datos));
     }
 
     @DeleteMapping("/{id}")
