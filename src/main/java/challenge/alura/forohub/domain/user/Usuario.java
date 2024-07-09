@@ -26,8 +26,6 @@ public class Usuario implements UserDetails {
     private String nombre;
     private String correo;
     private String contrasena;
-//    @OneToMany
-//    private Perfil perfiles;
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Topico> topics;
 
@@ -71,5 +69,17 @@ public class Usuario implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void actualizarDatos(DatosRegistroUsuario datos) {
+        if (datos.nombre() != null) {
+            this.nombre = datos.nombre();
+        }
+        if (datos.correo() != null) {
+            this.correo = datos.correo();
+        }
+        if (datos.contrasena() != null) {
+            this.contrasena = datos.contrasena();
+        }
     }
 }

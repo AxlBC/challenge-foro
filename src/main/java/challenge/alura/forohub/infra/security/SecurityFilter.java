@@ -12,13 +12,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
 
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
 
-    private TokenService tokenService;
-    private IUsuarioRepository usuarioRepository;
+    private final TokenService tokenService;
+    private final IUsuarioRepository usuarioRepository;
 
     @Autowired
     public SecurityFilter(TokenService tokenService, IUsuarioRepository usuarioRepository) {

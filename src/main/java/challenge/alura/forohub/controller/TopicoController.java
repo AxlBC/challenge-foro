@@ -17,39 +17,25 @@ import java.net.URI;
 @RequestMapping("/topico")
 public class TopicoController {
 
-    private final ITopicoRepository topicRepository;
     private final MDTService service;
 
     @Autowired
     public TopicoController(ITopicoRepository topicRepository, MDTService service) {
-        this.topicRepository = topicRepository;
         this.service = service;
     }
 
     @PostMapping
     public ResponseEntity<DatosRespuestaTopico> registraTopico(@RequestBody @Valid DatosRegistroTopico datosRegistroTopico,
                                                                UriComponentsBuilder uriComponentsBuilder) {
-//        System.out.println(datosRegistroTopico);
-//        topicRepository.save(new Topico(datosRegistroTopico));
         var response = service.registrarTopico(datosRegistroTopico);
         URI url = uriComponentsBuilder.path("/topico/{id}").buildAndExpand(response.idTopico()).toUri();
-//        return ResponseEntity.ok(response);
         return ResponseEntity.created(url).body(response);
     }
 
     @GetMapping
     public ResponseEntity<Page<DatosListadoTopico>> listadoTopico(@PageableDefault Pageable paginacion) {
         return service.listadoTopico(paginacion);
-//        return ResponseEntity.ok(topicRepository.findAllTopic(paginacion).map(DatosListadoTopico::new));
     }
-
-//    @GetMapping("/{fecha}")
-//    public ResponseEntity<Page<DatosListadoTopico>> listadoTopicoPorAnio(@PathVariable int anio, @PageableDefault Pageable paginacion,
-//                                                                         UriComponentsBuilder uriComponentsBuilder) {
-//        URI url = uriComponentsBuilder.path("/topic/{fecha}").buildAndExpand(response.idTopico()).toUri();
-////        return ResponseEntity.ok(topicRepository.findAllTopicByYear(paginacion, anio).map(DatosListadoTopico::new));
-////        return ResponseEntity.ok(topicRepository.findAll(pageable).map(DatosListadoTopico:new));
-//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<DatosRespuestaTopico> retornaDatosTopico(@PathVariable Long id) {

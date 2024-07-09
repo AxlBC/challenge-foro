@@ -33,11 +33,11 @@ public class MDTService { // (MDTService = Manejo de Datos Topico Service)
     @Transactional
     public DatosRespuestaTopico registrarTopico(DatosRegistroTopico datos) {
         // Creación del tópico
-        if (!usuarioRepository.findById(datos.idUsuario()).isPresent()) {
+        if (usuarioRepository.findById(datos.idUsuario()).isEmpty()) {
             throw new ValidacionDeIntegridad("No se ha encontrado ningún usuario con ese id.");
         }
 
-        if (!cursoRepository.findById(datos.idCurso()).isPresent()) {
+        if (cursoRepository.findById(datos.idCurso()).isEmpty()) {
             throw new ValidacionDeIntegridad("No se ha encontrado ningún curso con ese id.");
         }
 
@@ -61,11 +61,11 @@ public class MDTService { // (MDTService = Manejo de Datos Topico Service)
 
     @Transactional
     public DatosRespuestaTopico actualizarTopico(Long id, DatosActualizaTopico datos) {
-        if (!topicoRepository.findById(id).isPresent()) {
+        if (topicoRepository.findById(id).isEmpty()) {
             throw new ValidacionDeIntegridad("No se ha encontrado ningún tópico con ese id.");
         }
 
-        if (datos.idCurso() != null && !cursoRepository.findById(datos.idCurso()).isPresent()) {
+        if (datos.idCurso() != null && cursoRepository.findById(datos.idCurso()).isEmpty()) {
             throw new ValidacionDeIntegridad("No se ha encontrado ningún curso con ese id.");
         }
 

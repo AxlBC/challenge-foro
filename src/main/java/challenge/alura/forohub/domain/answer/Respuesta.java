@@ -27,4 +27,21 @@ public class Respuesta {
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    public Respuesta(String titulo, String solucion, LocalDateTime fechaCreacion, Topico topico, Usuario usuario) {
+        this.titulo = titulo;
+        this.solucion = solucion;
+        this.fechaCreacion = fechaCreacion;
+        this.topico = topico;
+        this.usuario = usuario;
+    }
+
+    public void actualizarDatos(DatosActualizaRespuesta datos) {
+        if (datos.titulo() != null) {
+            this.titulo = datos.titulo();
+        }
+        if (datos.solucion() != null) {
+            this.solucion = datos.solucion();
+        }
+    }
 }

@@ -11,6 +11,5 @@ public record DatosRegistroUsuario(
         String correo,
         @NotBlank
         String contrasena
-//        String perfiles
 ) {
 }
