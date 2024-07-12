@@ -15,6 +15,9 @@ public class TratadorDeErrores {
         return ResponseEntity.notFound().build();
     }
 
+    @ExceptionHandler(NullPointerException.class)
+    public ResponseEntity otroError404() { return ResponseEntity.notFound().build(); }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity tratarError400(MethodArgumentNotValidException e) {
         var errores = e.getFieldErrors().stream().map(DatosErrorValidacion::new).toList();

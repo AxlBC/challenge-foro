@@ -42,17 +42,32 @@ public class MDTService { // (MDTService = Manejo de Datos Topico Service)
         }
 
         // Validaciones extras
+        var usuario = usuarioRepository.getReferenceById(datos.idUsuario());
+        var curso = cursoRepository.getReferenceById(datos.idCurso());
 
-        var usuario = usuarioRepository.findById(datos.idUsuario()).get();
-        var curso = cursoRepository.findById(datos.idCurso()).get();
+        if (!curso.getActivo()) {
+            throw new ValidacionDeIntegridad("No se pueden publicar más tópicos en este curso porque ha sido desactivado.");
+        }
+
+        if (!usuario.getActivo()) {
+            throw new ValidacionDeIntegridad("No puede publicar un nuevo tópico si su cuenta se encuentra inactiva.");
+        }
 
         var topico = new Topico(datos.titulo(), datos.mensaje(), datos.fechaCreacion(), usuario, curso);
         topicoRepository.save(topico);
         return new DatosRespuestaTopico(topico);
     }
 
-    public ResponseEntity<Page<DatosListadoTopico>> listadoTopico(Pageable paginacion) {
+    public ResponseEntity<Page<DatosListadoTopico>> listadoTodoTopico(Pageable paginacion) {
         return ResponseEntity.ok(topicoRepository.findAllTopic(paginacion).map(DatosListadoTopico::new));
+    }
+
+    public ResponseEntity<Page<DatosListadoTopico>> listadoTopicoResuelto(Pageable paginacion) {
+        return ResponseEntity.ok(topicoRepository.findTopicoByResuelto(paginacion).map(DatosListadoTopico::new));
+    }
+
+    public ResponseEntity<Page<DatosListadoTopico>> listadoTopicoSinResolver(Pageable paginacion) {
+        return ResponseEntity.ok(topicoRepository.findTopicoBySinResolver(paginacion).map(DatosListadoTopico::new));
     }
 
     public ResponseEntity<DatosRespuestaTopico> retornarDatosTopico(Long id) {

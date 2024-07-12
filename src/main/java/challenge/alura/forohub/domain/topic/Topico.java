@@ -12,6 +12,7 @@ import java.util.List;
 @Table(name = "topico")
 @Entity(name = "Topico")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -24,13 +25,12 @@ public class Topico {
     private LocalDateTime fechaCreacion;
     private Boolean estado;
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario; //autor
-    @ManyToOne
     @JoinColumn(name = "curso_id")
     private Curso curso;
-    @OneToMany(mappedBy = "topico", cascade = CascadeType.ALL, orphanRemoval = true)
-//    @OneToMany(mappedBy = "topico", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario; //autor
+    @OneToMany(mappedBy = "topico", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Respuesta> respuestas;
 
 
@@ -50,16 +50,11 @@ public class Topico {
         if (datos.mensaje() != null) {
             this.mensaje = datos.mensaje();
         }
-        if (datos.estado() || !datos.estado()) {
+        if (datos.estado() != null) {
             this.estado = datos.estado();
         }
         if (curso != null) {
             this.curso = curso;
         }
     }
-
-    // Desactivar un tópico (resuelto)
-//    public void desactivar() {
-//        this.estado = false;
-//    }
 }

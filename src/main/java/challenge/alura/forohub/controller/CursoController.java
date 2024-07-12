@@ -36,8 +36,13 @@ public class CursoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DatosListadoCurso>> listadoCurso(@PageableDefault Pageable paginacion) {
-        return service.listadoCurso(paginacion);
+    public ResponseEntity<Page<DatosListadoCurso>> listadoCursoActivo(@PageableDefault Pageable paginacion) {
+        return service.listadoCursoActivos(paginacion);
+    }
+
+    @GetMapping("/inactivo")
+    public ResponseEntity<Page<DatosListadoCurso>> listadoCursoInactivo(@PageableDefault Pageable paginacion) {
+        return service.listadoCursoInactivos(paginacion);
     }
 
     // http://localhost:8080/curso/6

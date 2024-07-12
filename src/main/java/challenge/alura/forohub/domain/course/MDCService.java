@@ -23,8 +23,12 @@ public class MDCService { // (MDCService = Manejo de Datos Curso Service)
         return new DatosRespuestaCurso(curso);
     }
 
-    public ResponseEntity<Page<DatosListadoCurso>> listadoCurso(Pageable paginacion) {
-        return ResponseEntity.ok(cursoRepository.findAllCurso(paginacion).map(DatosListadoCurso::new));
+    public ResponseEntity<Page<DatosListadoCurso>> listadoCursoActivos(Pageable paginacion) {
+        return ResponseEntity.ok(cursoRepository.findAllCursoActivo(paginacion).map(DatosListadoCurso::new));
+    }
+
+    public ResponseEntity<Page<DatosListadoCurso>> listadoCursoInactivos(Pageable paginacion) {
+        return ResponseEntity.ok(cursoRepository.findAllCursoInactivo(paginacion).map(DatosListadoCurso::new));
     }
 
     public ResponseEntity<DatosRespuestaCurso> retornarDatosCurso(Long id) {
@@ -44,13 +48,8 @@ public class MDCService { // (MDCService = Manejo de Datos Curso Service)
 
     @Transactional
     public ResponseEntity eliminarCurso(Long id) {
-        var curso = cursoRepository.findById(id);
-
-        if(curso.isPresent()) {
-            cursoRepository.deleteCursoById(id);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        var curso = cursoRepository.getReferenceById(id);
+        curso.desactivarCurso();
+        return ResponseEntity.noContent().build();
     }
 }

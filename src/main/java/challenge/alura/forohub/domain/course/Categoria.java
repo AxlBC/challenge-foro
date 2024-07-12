@@ -4,5 +4,6 @@ public enum Categoria {
     PROGRAMACION,
     BASES_DE_DATOS,
     DESARROLLO_WEB,
-    CIBER_SEGURIDAD
+    CIBER_SEGURIDAD,
+    SIN_CATEGORIA
 }

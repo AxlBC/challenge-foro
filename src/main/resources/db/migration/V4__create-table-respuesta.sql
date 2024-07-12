@@ -8,7 +8,7 @@ CREATE TABLE Respuesta (
   usuario_id bigint NOT NULL,
 
   PRIMARY KEY (id),
-  FOREIGN KEY (usuario_id) REFERENCES Usuario(id),
-  FOREIGN KEY (topico_id) REFERENCES Topico(id)
+  FOREIGN KEY (usuario_id) REFERENCES Usuario(id) ON DELETE CASCADE,
+  FOREIGN KEY (topico_id) REFERENCES Topico(id) ON DELETE CASCADE
 
 );

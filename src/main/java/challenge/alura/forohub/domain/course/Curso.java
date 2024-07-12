@@ -20,12 +20,14 @@ public class Curso {
     private String nombre;
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
-    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Boolean activo;
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Topico> topicos;
 
     public Curso(DatosRegistroCurso datos) {
         this.nombre = datos.nombre();
         this.categoria = datos.categoria();
+        this.activo = true;
     }
 
     public void actualizarCurso(DatosActualizaCurso datos) {
@@ -35,5 +37,13 @@ public class Curso {
         if (datos.categoria() != null) {
             this.categoria = datos.categoria();
         }
+    }
+
+    public void desactivarCurso() {
+        this.activo = false;
+    }
+
+    public void activarCurso() {
+        this.activo = true;
     }
 }

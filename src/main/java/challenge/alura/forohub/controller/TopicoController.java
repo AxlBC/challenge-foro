@@ -1,7 +1,7 @@
 package challenge.alura.forohub.controller;
 
 import challenge.alura.forohub.domain.topic.*;
-import jakarta.transaction.Transactional;
+
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -33,8 +33,18 @@ public class TopicoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DatosListadoTopico>> listadoTopico(@PageableDefault Pageable paginacion) {
-        return service.listadoTopico(paginacion);
+    public ResponseEntity<Page<DatosListadoTopico>> listadoTodoTopico(@PageableDefault Pageable paginacion) {
+        return service.listadoTodoTopico(paginacion);
+    }
+
+    @GetMapping("/resuelto")
+    public ResponseEntity<Page<DatosListadoTopico>> listadoTopicoResuelto(@PageableDefault Pageable paginacion) {
+        return service.listadoTopicoResuelto(paginacion);
+    }
+
+    @GetMapping("/sin-resolver")
+    public ResponseEntity<Page<DatosListadoTopico>> listadoTopicoSinResolver(@PageableDefault Pageable paginacion) {
+        return service.listadoTopicoSinResolver(paginacion);
     }
 
     @GetMapping("/{id}")

@@ -1,15 +1,10 @@
 package challenge.alura.forohub.controller;
 
-import challenge.alura.forohub.domain.user.DatosListadoUsuario;
-import challenge.alura.forohub.domain.user.DatosRegistroUsuario;
-import challenge.alura.forohub.domain.user.DatosRespuestaUsuario;
-import challenge.alura.forohub.domain.user.MDUService;
+import challenge.alura.forohub.domain.user.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,20 +21,40 @@ public class UsuarioController {
         this.service = service;
     }
 
-    @PostMapping
+    @PostMapping("/registro")
     public ResponseEntity<DatosRespuestaUsuario> registraUsuario(@RequestBody @Valid DatosRegistroUsuario datos,
                                                                  UriComponentsBuilder uriComponentsBuilder) {
         return service.resgistraUsuario(datos, uriComponentsBuilder);
     }
 
-    @GetMapping
-    public ResponseEntity<Page<DatosListadoUsuario>> listadoUsuarios(@PageableDefault Pageable paginacion) {
-        return service.listadoUsuario(paginacion);
+    @GetMapping("/todos")
+    public ResponseEntity<Page<DatosListadoUsuario>> listadoUsuario(@PageableDefault Pageable paginacion) {
+        return service.listadoTodoUsuario(paginacion);
+    }
+
+    @GetMapping("/activo")
+    public ResponseEntity<Page<DatosListadoUsuario>> listadoUsuarioActivo(@PageableDefault Pageable paginacion) {
+        return service.listadoUsuarioActivo(paginacion);
+    }
+
+    @GetMapping("/inactivo")
+    public ResponseEntity<Page<DatosListadoUsuario>> listadoUsuarioInactivo(@PageableDefault Pageable paginacion) {
+        return service.listadoUsuarioInactivo(paginacion);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<DatosListadoUsuario> retornaDatosUsuario(@PathVariable Long id) {
         return service.retornaDatosUsuario(id);
+    }
+
+    @GetMapping("/{id}/topicos")
+    public ResponseEntity<DatosListadoUsuarioTopico> retornaDatosUsuarioTopico(@PathVariable Long id) {
+        return service.retornaDatosUsuarioTopico(id);
+    }
+
+    @GetMapping("/{id}/respuestas")
+    public ResponseEntity<DatosListadoUsuarioRespuesta> retornaDatosUsuarioRespuesta(@PathVariable Long id) {
+        return service.retornaDatosUsuarioRespuesta(id);
     }
 
     @PutMapping("/{id}")
