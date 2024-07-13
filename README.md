@@ -139,17 +139,11 @@ En un curso inactivo no se permitira la publicación de nuevos tópicos.
 ![eliminacionRespuesta](https://github.com/user-attachments/assets/cc8f5686-1c13-4b96-b621-62c48919ae82)
 - Elimina el registro contenedor de la respuesta de la base de datos de forma permanente.
 
-
-
 ## Tecnologías usadas
 - Java 17
 - Spring Boot 3.0
-- Spring JPA
-- Hibernate
 - Maven
-- Loombok
+- Intellij Idea
 
-## Dependencias
-
-## Imágenes 
-
+## Estado del proyecto
+El proyecto se encuentra en un estado finalizado y cumpliendo con los requerimientos mínimos establecidos en la propuesta del challenge, sin embargo, aún no se cierra a la posiblidad de obtener pequeñas actualizaciones que traigan consigo algunas mejoras en general.
