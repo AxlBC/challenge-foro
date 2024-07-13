@@ -90,6 +90,33 @@ En un curso inactivo no se permitira la publicación de nuevos tópicos.
 
 ### Tópico
 
+#### Registro de un nuevo tópico
+![registrarTopico](https://github.com/user-attachments/assets/4f5f8422-daa4-4477-8739-6108c94e3223)
+- Permite registrar un nuevo tópico siempre y cuando tanto el usuario como el curso correspondiente se encuentren activos.
+
+#### Listado de tópicos y seleccion específicas
+![listadoDeTopicoYRespuestas](https://github.com/user-attachments/assets/a8043746-91fd-41e9-9efe-9e6127464652)
+- Permite visualizar una lista de los tópicos publicados junto a una sub-lista correspondiente a los títulos e id's de las respuestas respectivas a cada tópico.
+
+![listadoDeTopicoEspecífico](https://github.com/user-attachments/assets/febdab28-cbc7-46cd-a7fa-e8aaaeb5c129)
+- Permite visualizar los detalles de un tópico en específico según su id en la base de datos.
+
+#### Listados de tópicos resueltos y sin resolver
+![listadoDeTopicoResuelto](https://github.com/user-attachments/assets/a7226885-567b-4718-b410-ff2bee2c0192)
+- El path ("/resuelto") permite visualizar una lista de los tópicos marcados como "resueltos" a través del uso del valor "false" en la sección de "estado", indicando así que el tópico está ya cerrado debido a que el usuario pudo hallar la solución de su problema.
+
+![listadoDeTopicoSinResolver](https://github.com/user-attachments/assets/9d3b21b5-3b96-481b-b076-b7fd1c573d7b)
+- El path ("/sin-resolver") permite visualizar una lista de los tópicos marcados como "sin resolver" a través del uso del valor "true" en la seeción de "estado", indicando así que el usuario aún no encuentra la solución a su problema publicado y el tópico sigue abierto a nuevas respuestas.
+
+#### Actualizar tópico
+![actualizaTopico](https://github.com/user-attachments/assets/3d9bb369-7e07-4e20-a45a-fc915d89ed8d)
+- Permite actualizar los datos principales de un tópico, así como cambiar el estado de este para comunicar al resto de usuarios que el tópico se encuentra activo o cerrado.
+
+#### Eliminar tópico
+![eliminaTopico](https://github.com/user-attachments/assets/9ae0e284-ab01-4129-be56-179c8d8a5f32)
+- Permite la eliminación total de un tópico de la base de datos (a diferencia de los registros de cursos y usuarios), incluyendo todas las respuestas relacionadas a dicho tópico elimnado.
+
+
 ### Respuestas
 
 ## Tecnologías usadas
