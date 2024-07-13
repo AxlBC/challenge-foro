@@ -9,7 +9,7 @@ CREATE TABLE Topico (
   usuario_id bigint NOT NULL,
 
   PRIMARY KEY (id),
-  FOREIGN KEY (usuario_id) REFERENCES Usuario(id),
+  FOREIGN KEY (usuario_id) REFERENCES Usuario(id) ON DELETE CASCADE,
   FOREIGN KEY (curso_id) REFERENCES Curso(id) ON DELETE CASCADE
 
 );
