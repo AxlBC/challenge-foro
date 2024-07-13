@@ -119,6 +119,28 @@ En un curso inactivo no se permitira la publicación de nuevos tópicos.
 
 ### Respuestas
 
+#### Registro de una nueva respuesta
+![registroDeRespuesta](https://github.com/user-attachments/assets/4b7daf73-2720-4563-8bbe-356f7f885e0b)
+- Permite el registro de una nueva respuesta especificando el id del tópico al que corresponde y el id del usuario que publicará la respuesta.
+
+#### Listado de respuestas y selección específica
+![listadoDeRespuesta](https://github.com/user-attachments/assets/87639df9-8965-4510-bda0-6b9da82aaf4f)
+- Permite visualizar un listado de las respuestas publicadas por los usuarios.
+
+![listadoDeRespuestaEspecifica](https://github.com/user-attachments/assets/95cdea20-fdb1-453e-9597-58fda36c191e)
+- Permite visualizar a detalle una respuesta en específico porsi id en la base de datos.
+
+
+#### Actualizar respuesta
+![actualizaRespuesta](https://github.com/user-attachments/assets/dad7d37b-1dd3-405a-9ea6-64648b9a44ed)
+- Permite la actualización de los campos ""título" y "solución" de la respuesta por medio de la id de esta misma.
+
+#### Eliminar respuesta
+![eliminacionRespuesta](https://github.com/user-attachments/assets/cc8f5686-1c13-4b96-b621-62c48919ae82)
+- Elimina el registro contenedor de la respuesta de la base de datos de forma permanente.
+
+
+
 ## Tecnologías usadas
 - Java 17
 - Spring Boot 3.0
