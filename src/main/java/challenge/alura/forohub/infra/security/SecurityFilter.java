@@ -30,7 +30,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         // Obtener el toke del header
         var authHeader = request.getHeader("Authorization");
-        System.out.println(authHeader);
+//        System.out.println(authHeader);
         if (authHeader != null) {
             System.out.println("entramos al if");
             if (!new AntPathRequestMatcher("/usuario/registro").matches(request)) {
@@ -47,7 +47,7 @@ public class SecurityFilter extends OncePerRequestFilter {
             }
         }
         filterChain.doFilter(request, response);
-        System.out.println("termina SecurityFilter");
+//        System.out.println("termina SecurityFilter");
 
 //        if (new AntPathRequestMatcher("/login").matches(request) ||
 //                new AntPathRequestMatcher("/usuario/registro").matches(request)) {

@@ -5,6 +5,7 @@ import challenge.alura.forohub.domain.answer.DatosListadoRespuesta;
 import challenge.alura.forohub.domain.answer.DatosRespuestaRespuesta;
 import challenge.alura.forohub.domain.answer.DatosRegistroRespuesta;
 import challenge.alura.forohub.domain.answer.MDRService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/respuesta")
+@SecurityRequirement(name = "bearer-key")
 public class RespuestaController {
 
     private final MDRService service;

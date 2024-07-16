@@ -30,12 +30,22 @@ public class SecurityConfigurations {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(a -> a.requestMatchers("/swagger-ui.html", "/v3/api-docs/**",
+                        "/swagger-ui/**").permitAll())
                 .authorizeHttpRequests(a -> a.requestMatchers(HttpMethod.POST, "/login", "/usuario/registro")
                         .permitAll()
                         .anyRequest()
                         .authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
+
+        // http://server:port/context-path/swagger-ui.html and the  OpenAPI description will be available
+        // at the following url for json format: http://server:port/context-path/v3/api-docs
+//                        .authorizeHttpRequests(a -> a.requestMatchers("/swagger-ui.html", "/v3/api-docs/**",
+//                        "/swagger-ui/**")
+//                .permitAll()
+//                .anyRequest()
+//                .authenticated())
     }
 
     @Bean

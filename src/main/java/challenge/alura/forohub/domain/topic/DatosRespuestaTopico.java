@@ -14,13 +14,11 @@ public record DatosRespuestaTopico(
         String usuario,
         String curso,
         Categoria categoria,
-        LocalDateTime fechaCreacion,
-        List<DatosListadoRespuestaTopico> respuestas
+        LocalDateTime fechaCreacion
 ) {
     public DatosRespuestaTopico(Topico topico) {
         this(topico.getId(), topico.getTitulo(), topico.getMensaje(), topico.getEstado(),
                 topico.getUsuario().getNombre(), topico.getCurso().getNombre(), topico.getCurso().getCategoria(),
-                topico.getFechaCreacion(), topico.getRespuestas().stream()
-                        .map(DatosListadoRespuestaTopico::new).toList());
+                topico.getFechaCreacion());
     }
 }

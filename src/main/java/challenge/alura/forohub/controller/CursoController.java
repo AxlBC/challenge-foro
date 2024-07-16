@@ -3,6 +3,7 @@ package challenge.alura.forohub.controller;
 import challenge.alura.forohub.domain.course.*;
 import challenge.alura.forohub.domain.topic.DatosListadoTopico;
 import challenge.alura.forohub.domain.topic.DatosRespuestaTopico;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,6 +17,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/curso")
+@SecurityRequirement(name = "bearer-key")
 public class CursoController {
 
     private final ICursoRepository cursoRepository;

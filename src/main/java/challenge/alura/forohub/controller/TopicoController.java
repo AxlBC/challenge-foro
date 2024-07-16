@@ -2,6 +2,7 @@ package challenge.alura.forohub.controller;
 
 import challenge.alura.forohub.domain.topic.*;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/topico")
+@SecurityRequirement(name = "bearer-key")
 public class TopicoController {
 
     private final MDTService service;

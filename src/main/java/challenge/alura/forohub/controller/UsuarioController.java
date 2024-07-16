@@ -1,6 +1,7 @@
 package challenge.alura.forohub.controller;
 
 import challenge.alura.forohub.domain.user.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/usuario")
+@SecurityRequirement(name = "bearer-key")
 public class UsuarioController {
 
     private final MDUService service;
@@ -27,12 +29,12 @@ public class UsuarioController {
         return service.resgistraUsuario(datos, uriComponentsBuilder);
     }
 
-    @GetMapping("/todos")
-    public ResponseEntity<Page<DatosListadoUsuario>> listadoUsuario(@PageableDefault Pageable paginacion) {
-        return service.listadoTodoUsuario(paginacion);
-    }
+//    @GetMapping("/todos")
+//    public ResponseEntity<Page<DatosListadoUsuario>> listadoUsuario(@PageableDefault Pageable paginacion) {
+//        return service.listadoTodoUsuario(paginacion);
+//    }
 
-    @GetMapping("/activo")
+    @GetMapping()
     public ResponseEntity<Page<DatosListadoUsuario>> listadoUsuarioActivo(@PageableDefault Pageable paginacion) {
         return service.listadoUsuarioActivo(paginacion);
     }
